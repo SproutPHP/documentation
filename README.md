@@ -16,5 +16,5 @@
 
 This is the **README** for the SproutPHP framework documentation.
 
-- 🌱 **SproutPHP Website:** [https://sproutphp.dev](https://sproutphp.dev)
+- 🌱 **SproutPHP Website:** [https://sproutphp.github.io](https://sproutphp.github.io)
 - 📦 **Repository:** [https://github.com/sproutphp/framework](https://github.com/sproutphp/framework)
