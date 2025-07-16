@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SproutPHP Documentation</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  </head>
+  <body>
+    <div class="mobile-header">
+      <button
+        id="sidebar-toggle"
+        aria-label="Toggle sidebar"
+        class="mobile-hamburger"
+      >
+        ☰
+      </button>
+      <img
+        src="img/sproutphp_logo.png"
+        alt="SproutPHP Logo"
+        class="mobile-logo-img"
+        style="
+          height: 2rem;
+          width: auto;
+          vertical-align: middle;
+          margin-right: 0.5rem;
+        "
+      />
+      <span class="mobile-logo">SproutPHP</span>
+      <button
+        id="darkmode-toggle"
+        title="Toggle dark mode"
+        class="mobile-darkmode-toggle"
+      >
+        🌙
+      </button>
+    </div>
+    <div class="docs-container">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <div
+            class="sidebar-title-row"
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              gap: 1rem;
+              margin-bottom: 20px;
+            "
+          >
+            <img
+              src="img/sproutphp_logo.png"
+              alt="SproutPHP Logo"
+              class="sidebar-logo"
+              style="height: 2.1rem; width: auto; vertical-align: middle"
+            />
+            <h2 style="margin: 0">SproutPHP</h2>
+            <button
+              id="darkmode-toggle"
+              title="Toggle dark mode"
+              style="
+                font-size: 1.3rem;
+                line-height: 1.3rem;
+                background: none;
+                border: none;
+                cursor: pointer;
+                outline: none;
+                padding: 1px;
+              "
+            >
+              🌙
+            </button>
+          </div>
+          <input type="text" id="search" placeholder="Search docs..." />
+        </div>
+        <nav>
+          <ul>
+            <li><a href="#introduction" class="nav-link">Introduction</a></li>
+            <li>
+              <a href="#getting-started" class="nav-link">Getting Started</a>
+            </li>
+            <li>
+              <a href="#project-structure" class="nav-link"
+                >Project Structure</a
+              >
+            </li>
+            <li><a href="#routing" class="nav-link">Routing</a></li>
+            <li><a href="#controllers" class="nav-link">Controllers</a></li>
+            <li><a href="#views" class="nav-link">Views & Templating</a></li>
+            <li><a href="#csrf" class="nav-link">CSRF Protection</a></li>
+            <li><a href="#htmx" class="nav-link">HTMX & SPA</a></li>
+            <li><a href="#storage" class="nav-link">Storage</a></li>
+            <li><a href="#file-upload" class="nav-link">File Upload</a></li>
+            <li>
+              <a href="#private-files" class="nav-link"
+                >Private File Handling</a
+              >
+            </li>
+            <li><a href="#debugbar" class="nav-link">Debugbar</a></li>
+            <li><a href="#changelog" class="nav-link">Changelog</a></li>
+            <li><a href="#release-notes" class="nav-link">Release Notes</a></li>
+          </ul>
+        </nav>
+      </aside>
+      <div class="sidebar-backdrop hide"></div>
+      <main class="content" id="main-content">
+        <section id="introduction">
+          <h1>Welcome to SproutPHP</h1>
+          <p>
+            <strong>SproutPHP</strong> is a modern, minimalist,
+            batteries-included PHP framework for rapid web development. It is
+            designed to be fast, clean, and easy to use, with a focus on
+            developer happiness and productivity.
+          </p>
+          <ul>
+            <li>Version: <b>v0.1.7-beta.1</b></li>
+            <li>Release Date: 2024-06-09</li>
+            <li>License: MIT</li>
+            <li>
+              Author: <a href="https://github.com/yanikkumar">Yanik Kumar</a>
+              <iframe
+                src="https://github.com/sponsors/yanikkumar/button"
+                title="Sponsor yanikkumar"
+                height="32"
+                width="114"
+                style="border: 0; border-radius: 6px"
+              ></iframe>
+            </li>
+          </ul>
+          <p>
+            SproutPHP is for developers who want to build modern web apps with
+            PHP, HTML, and CSS—without the bloat of heavy JS frameworks or large
+            dependency trees. It is minimal, but <b>batteries-included</b>:
+            everything you need for a beautiful, interactive web app is ready
+            out of the box.
+          </p>
+          <ul>
+            <li>
+              No heavy JavaScript: Use
+              <a href="https://htmx.org/" target="_blank">HTMX</a> for
+              interactivity, not SPA frameworks.
+            </li>
+            <li>
+              Minimal dependencies: Only essential Composer packages, no
+              <code>node_modules</code> or asset pipeline.
+            </li>
+            <li>
+              MVC structure: Clear separation of Controllers, Models, and Views.
+            </li>
+            <li>
+              Twig templating: Clean, secure, and fast rendering (optional to
+              swap for native PHP if desired).
+            </li>
+          </ul>
+        </section>
+        <section id="getting-started">
+          <h2>Getting Started</h2>
+          <ol>
+            <li>
+              <b>Clone the repository:</b>
+              <pre>git clone https://github.com/SproutPHP/framework.git</pre>
+            </li>
+            <li>
+              <b>Install dependencies:</b>
+              <pre>composer install</pre>
+            </li>
+            <li>
+              <b>Start the dev server:</b>
+              <pre>php sprout grow</pre>
+            </li>
+            <li>
+              <b>Open:</b>
+              <pre>http://localhost:9090</pre>
+            </li>
+            <li>
+              Edit <code>routes/web.php</code>, <code>app/Controllers</code>,
+              and <code>app/Views</code> to build your app.
+            </li>
+          </ol>
+          <p>Use the CLI to scaffold files:</p>
+          <pre><code>php sprout make:controller HomeController
+php sprout make:model Post
+php sprout make:view home
+php sprout make:route posts
+# ...and more (run `php sprout` for all commands)</code></pre>
+        </section>
+        <section id="project-structure">
+          <h2>Project Structure</h2>
+          <p>
+            SproutPHP uses a clean, minimal directory structure for clarity and
+            maintainability:
+          </p>
+          <pre><code>project-root/
+├── app/
+│   ├── Controllers/
+│   ├── Models/
+│   ├── Views/
+├── config/
+├── core/
+├── public/
+├── routes/
+├── storage/
+├── vendor/
+</code></pre>
+          <ul>
+            <li><b>app/Controllers/</b> — Your application controllers</li>
+            <li>
+              <b>app/Models/</b> — Your models (database access, business logic)
+            </li>
+            <li><b>app/Views/</b> — Twig templates and view partials</li>
+            <li>
+              <b>config/</b> — Configuration files (app, database, security,
+              etc.)
+            </li>
+            <li>
+              <b>core/</b> — Framework core (routing, support, middleware, etc.)
+            </li>
+            <li>
+              <b>public/</b> — Web root (index.php, assets, favicon, storage
+              symlink)
+            </li>
+            <li><b>routes/</b> — Route definitions (web.php)</li>
+            <li><b>storage/</b> — File uploads, cache, logs, etc.</li>
+            <li><b>vendor/</b> — Composer dependencies</li>
+          </ul>
+        </section>
+        <section id="routing">
+          <h2>Routing</h2>
+          <p>
+            Define routes in <code>routes/web.php</code> using a simple,
+            expressive API. SproutPHP supports dynamic parameters for flexible
+            CRUD and APIs:
+          </p>
+          <pre><code>Route::get('/user/{id}', 'UserController@show');
+Route::get('/blog/{slug}', 'BlogController@show');</code></pre>
+          <ul>
+            <li>Parameters are passed to controller methods as arguments.</li>
+            <li>All routes are defined in <code>routes/web.php</code>.</li>
+          </ul>
+          <p>For more, see the <b>Controllers</b> section.</p>
+        </section>
+        <section id="controllers">
+          <h2>Controllers</h2>
+          <p>
+            Controllers handle requests and return responses. Create controllers
+            in <code>app/Controllers/</code>:
+          </p>
+          <pre><code>// app/Controllers/HomeController.php
+class HomeController {
+    public function index() {
+        return view('home', ['title' => 'Hello, World!']);
+    }
+}</code></pre>
+          <p>
+            Controllers can return views, JSON, or any response. Use route
+            parameters as method arguments.
+          </p>
+        </section>
+        <section id="views">
+          <h2>Views & Templating</h2>
+          <p>
+            SproutPHP uses
+            <a href="https://twig.symfony.com/" target="_blank">Twig</a> for
+            templating by default. Views are in <code>app/Views/</code>:
+          </p>
+          <pre><code>{# app/Views/home.twig #}
+<h1>{{ title }}</h1></code></pre>
+          <ul>
+            <li>Pass data from controllers to views as associative arrays.</li>
+            <li>Use layouts, partials, and components for DRY templates.</li>
+            <li>
+              All helpers in <code>core/Support/helpers.php</code> are available
+              in Twig.
+            </li>
+          </ul>
+        </section>
+        <section id="csrf">
+          <h2>CSRF Protection</h2>
+          <p>
+            SproutPHP uses robust, middleware-based CSRF protection for all
+            state-changing requests (POST, PUT, PATCH, DELETE):
+          </p>
+          <ul>
+            <li>
+              Token is generated and stored in <code>_csrf_token</code> in the
+              session.
+            </li>
+            <li>
+              Use <code>{{ csrf_field()|raw }}</code> in forms for a hidden
+              input.
+            </li>
+            <li>
+              Use <code>{{ csrf_token() }}</code> for AJAX/HTMX requests (in the
+              <code>X-CSRF-TOKEN</code> header).
+            </li>
+            <li>
+              Middleware <code>VerifyCsrfToken</code> validates the token for
+              all state-changing requests.
+            </li>
+          </ul>
+          <pre><code>// In a form
+<form method="POST">
+  {{ csrf_field()|raw }}
+  ...
+</form>
+
+// In HTMX
+<button hx-post="/api" hx-headers='{"X-CSRF-TOKEN": "{{ csrf_token() }}"}'>...</button></code></pre>
+        </section>
+        <section id="htmx">
+          <h2>HTMX & SPA Interactivity</h2>
+          <p>
+            SproutPHP uses
+            <a href="https://htmx.org/" target="_blank">HTMX</a> for modern,
+            SPA-like interactivity:
+          </p>
+          <ul>
+            <li>Partial page updates (no full reloads)</li>
+            <li>Request indicators (spinners)</li>
+            <li>
+              File uploads and forms with <code>hx-post</code>,
+              <code>hx-target</code>, <code>hx-swap</code>,
+              <code>hx-indicator</code>
+            </li>
+            <li>
+              Use <code>hx-trigger="submit delay:500ms"</code> to delay requests
+              for UX/demo
+            </li>
+          </ul>
+          <pre><code>&lt;form
+  hx-post="/validation-test"
+  hx-target="#form-container"
+  hx-swap="innerHTML"
+  hx-indicator="#spinner"
+  hx-trigger="submit delay:500ms"
+&gt;
+  ...
+&lt;/form&gt;</code></pre>
+          <p>
+            See the <b>File Upload</b> section for an example with file input.
+          </p>
+        </section>
+        <section id="storage">
+          <h2>Storage</h2>
+          <p>
+            SproutPHP provides robust file storage with public/private
+            separation:
+          </p>
+          <ul>
+            <li>
+              Public files: <code>storage/app/public</code> (served via symlink
+              to <code>public/storage</code>)
+            </li>
+            <li>
+              Private files: <code>storage/app/private</code> (not
+              web-accessible)
+            </li>
+            <li>Configurable in <code>config/storage.php</code></li>
+            <li>
+              Use <code>Storage::put()</code>, <code>Storage::url()</code>,
+              <code>Storage::path()</code>
+            </li>
+          </ul>
+          <pre><code>// Upload public
+          $path = Storage::put($file, 'avatars');
+          $url = Storage::url($path);
+          // Upload private
+          $path = Storage::put($file, '', 'private');
+          $fullPath = Storage::path($path, 'private');</code></pre>
+        </section>
+        <section id="file-upload">
+          <h2>File Upload</h2>
+          <p>File uploads are easy with SproutPHP and HTMX:</p>
+          <pre><code>&lt;form
+  hx-post="/validation-test"
+  hx-target="#form-container"
+  hx-swap="innerHTML"
+  hx-indicator="#spinner"
+  enctype="multipart/form-data"
+&gt;
+  {{ csrf_field()|raw }}
+  &lt;input type="file" name="avatar" /&gt;
+  &lt;button type="submit"&gt;Upload&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+          <ul>
+            <li>
+              Files are stored in <code>storage/app/public</code> or
+              <code>storage/app/private</code>
+            </li>
+            <li>
+              Use <code>Storage::put()</code> to save,
+              <code>Storage::url()</code> to get public URL
+            </li>
+            <li>Private files are only accessible via controller download</li>
+          </ul>
+        </section>
+        <section id="private-files">
+          <h2>Private File Handling</h2>
+          <p>
+            Private files are stored in <code>storage/app/private</code> and are
+            not web-accessible. They can only be accessed via internal
+            controller methods, ensuring security for sensitive uploads.
+          </p>
+          <pre><code>// Upload private
+$path = Storage::put($file, '', 'private');
+// Download (controller)
+$privatePath = Storage::path($filename, 'private');
+</code></pre>
+          <ul>
+            <li>No direct links to private files are exposed.</li>
+            <li>
+              To serve a private file, stream it from a controller after
+              permission checks.
+            </li>
+          </ul>
+        </section>
+        <section id="debugbar">
+          <h2>Debugbar</h2>
+          <p>
+            The SproutPHP Debugbar shows request info, queries, and performance
+            at the bottom of the page (when <code>APP_DEBUG</code> is enabled):
+          </p>
+          <ul>
+            <li>
+              Shows method, URI, query count, query time, page time, memory
+              usage
+            </li>
+            <li>Lists all SQL queries with parameters and call site</li>
+            <li>Auto-updates URI after HTMX navigation</li>
+            <li>
+              Can be customized or hidden in
+              <code>core/Support/Debugbar.php</code>
+            </li>
+          </ul>
+        </section>
+        <section id="changelog">
+          <h2>Changelog</h2>
+          <pre><code>## [v0.1.7-beta.1] - 2024-06-09
+
+### Added
+- Dynamic route parameter support (e.g., /user/{id}, /file/{filename:.+}) for CRUD and flexible routing
+- Robust CSRF protection via middleware and helpers (works for forms, AJAX, and HTMX)
+- SPA-like file upload and form handling with HTMX (including indicators and grid UI)
+- Secure private file upload/download (no direct links, internal access only)
+- Consistent CSRF token management (single session key, helpers, and middleware)
+
+### Improved
+- UI/UX for validation and file upload forms (two-column grid, spinner, SPA feel)
+- Path resolution for storage (public/private separation, symlink support)
+- Code structure: CSRF logic moved to helpers/middleware, no raw PHP in entry
+
+### Fixed
+- Issues with file download on PHP built-in server (now uses query param for compatibility)
+- Consistency in CSRF token usage across the framework
+
+### Removed
+- Exposed raw CSRF logic from entry point
+</code></pre>
+        </section>
+        <section id="release-notes">
+          <h2>Release Notes: v0.1.7-beta.1 (2024-06-09)</h2>
+          <ul>
+            <li>
+              <b>First Beta Release!</b> SproutPHP is now feature-complete and
+              ready for broader testing and feedback.
+            </li>
+            <li>
+              <b>Dynamic Routing:</b> Support for route parameters (e.g.,
+              /user/{id}, /file/{filename:.+}) enables full CRUD and flexible
+              APIs.
+            </li>
+            <li>
+              <b>CSRF Protection:</b> Robust, middleware-based CSRF protection
+              for all state-changing requests (forms, AJAX, HTMX).
+            </li>
+            <li>
+              <b>SPA-like UX:</b> HTMX-powered forms and file uploads for a
+              modern, seamless user experience.
+            </li>
+            <li>
+              <b>Private File Handling:</b> Secure upload/download of private
+              files, accessible only via internal methods.
+            </li>
+            <li>
+              <b>Cleaner Codebase:</b> All CSRF logic is now in
+              helpers/middleware, not exposed in entry scripts.
+            </li>
+          </ul>
+          <h3>Upgrade Notes</h3>
+          <ul>
+            <li>
+              All CSRF tokens now use the <code>_csrf_token</code> session key.
+              Update any custom code to use the new helpers.
+            </li>
+            <li>
+              File downloads now use a query parameter (<code>?file=...</code>)
+              for compatibility with the PHP built-in server.
+            </li>
+            <li>
+              If you use custom routes, you can now use <code>{param}</code> and
+              <code>{param:regex}</code> patterns.
+            </li>
+          </ul>
+          <h3>What's New</h3>
+          <ul>
+            <li>Two-column grid UI for validation and file upload forms</li>
+            <li>SPA feel with HTMX indicators and partial updates</li>
+            <li>Consistent and secure CSRF handling everywhere</li>
+            <li>Improved storage path resolution and symlink support</li>
+          </ul>
+          <p>
+            Thank you for testing and contributing to SproutPHP. Please report
+            any issues or feedback as we move toward a stable release.
+          </p>
+        </section>
+        <!-- End of documentation sections -->
+
+        <section id="about-branding" class="about-branding">
+          <img
+            src="img/SproutPHP_Icon.png"
+            alt="SproutPHP Icon"
+            class="about-branding-logo"
+          />
+          <h2>About SproutPHP Branding & Creator</h2>
+          <p class="about-branding-desc">
+            SproutPHP is a modern, minimalist PHP framework designed and created
+            by
+            <a href="https://github.com/yanikkumar" target="_blank"
+              >Yanik Kumar</a
+            >. The SproutPHP logo and icon represent growth, simplicity, and the
+            power of starting small to build something great.
+          </p>
+          <blockquote class="about-branding-quote">
+            “From tiny seeds grow mighty trees. — SproutPHP”
+          </blockquote>
+          <div class="about-branding-sponsor">
+            <iframe
+              src="https://github.com/sponsors/yanikkumar/card"
+              title="Sponsor yanikkumar"
+              height="225"
+              width="600"
+              style="border: 0; max-width: 100%"
+            ></iframe>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script src="docs.js"></script>
+  </body>
+</html>
