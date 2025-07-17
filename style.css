@@ -193,6 +193,19 @@ html[data-theme="light"] .mobile-darkmode-toggle {
   color: #388e3c;
 }
 
+/* Style code tags inside the security warning box for both themes */
+#security-warning code {
+  background: #ffeaea !important;
+  color: #b30000 !important;
+  border-radius: 4px;
+  padding: 0.1em 0.4em;
+  font-size: 0.98em;
+}
+html[data-theme="dark"] #security-warning code {
+  background: #ffeaea !important;
+  color: #b30000 !important;
+}
+
 .about-branding {
   margin-top: 3rem;
   padding: 2.5rem 0 1.5rem 0;

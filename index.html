@@ -178,6 +178,15 @@
             </li>
           </ul>
         </section>
+        <!-- SECURITY WARNING: Only expose public/ as web root -->
+        <section id="security-warning">
+          <div style="background:#fff3f3; color:#b30000; border:1px solid #ffb3b3; padding:1.2em 1.5em; border-radius:7px; margin-bottom:2em; font-size:1.08em;">
+            <strong>⚠️ Security Warning:</strong><br>
+            For security, you <b>must</b> set your web server's document root to the <code>public/</code> directory only.<br>
+            <b>Never expose the project root or any directory above <code>public/</code> to the web.</b><br>
+            If misconfigured, sensitive files (like <code>.env</code>, <code>storage/</code>, <code>config/</code>, etc.) could be publicly accessible and compromise your application.
+          </div>
+        </section>
         <section id="getting-started">
           <h2>Getting Started</h2>
           <ol>
