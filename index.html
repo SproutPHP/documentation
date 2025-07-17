@@ -20,8 +20,24 @@
     <link rel="canonical" href="https://sproutphp.github.io/documentation/" />
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <style>
+      .beta-ribbon {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: #ff9800;
+        color: white;
+        padding: 5px 10px;
+        font-weight: bold;
+        font-size: 14px;
+        text-decoration: none;
+        border-bottom-left-radius: 5px;
+        z-index: 999;
+      }
+    </style>
   </head>
   <body>
+    <a href="#" class="beta-ribbon"> Beta </a>
     <div class="mobile-header">
       <button
         id="sidebar-toggle"
@@ -129,7 +145,7 @@
             developer happiness and productivity.
           </p>
           <ul>
-            <li>Version: <b>v0.1.7-beta.1</b></li>
+            <li>Version: <b>v0.1.7-beta.1 (pre-release)</b></li>
             <li>Release Date: 2024-06-09</li>
             <li>License: MIT</li>
             <li>
@@ -481,7 +497,7 @@ $privatePath = Storage::path($filename, 'private');
         </section>
         <section id="changelog">
           <h2>Changelog</h2>
-          <pre><code>## [v0.1.7-beta.1] - 2024-06-09
+          <pre><code>## [v0.1.7-beta.1 (pre-release)] - 2024-06-09
 
 ### Added
 - Dynamic route parameter support (e.g., /user/{id}, /file/{filename:.+}) for CRUD and flexible routing
@@ -504,7 +520,7 @@ $privatePath = Storage::path($filename, 'private');
 </code></pre>
         </section>
         <section id="release-notes">
-          <h2>Release Notes: v0.1.7-beta.1 (2024-06-09)</h2>
+          <h2>Release Notes: v0.1.7-beta.1 (pre-release) (2024-06-09)</h2>
           <ul>
             <li>
               <b>First Beta Release!</b> SproutPHP is now feature-complete and
