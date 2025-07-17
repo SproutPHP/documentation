@@ -115,6 +115,7 @@
                 >Project Structure</a
               >
             </li>
+            <li><a href="#server-config-examples" class="nav-link">Server Config Examples</a></li>
             <li><a href="#routing" class="nav-link">Routing</a></li>
             <li><a href="#controllers" class="nav-link">Controllers</a></li>
             <li><a href="#views" class="nav-link">Views & Templating</a></li>
@@ -184,39 +185,9 @@
             <strong>⚠️ Security Warning:</strong><br>
             For security, you <b>must</b> set your web server's document root to the <code>public/</code> directory only.<br>
             <b>Never expose the project root or any directory above <code>public/</code> to the web.</b><br>
-            If misconfigured, sensitive files (like <code>.env</code>, <code>storage/</code>, <code>config/</code>, etc.) could be publicly accessible and compromise your application.
+            If misconfigured, sensitive files (like <code>.env</code>, <code>storage/</code>, <code>config/</code>, etc.) could be publicly accessible and compromise your application.<br>
+            <b>See <a href="#server-config-examples">Server Configuration</a> for deployment details.</b>
           </div>
-        </section>
-        <section id="getting-started">
-          <h2>Getting Started</h2>
-          <ol>
-            <li>
-              <b>Clone the repository:</b>
-              <pre>git clone https://github.com/SproutPHP/framework.git</pre>
-            </li>
-            <li>
-              <b>Install dependencies:</b>
-              <pre>composer install</pre>
-            </li>
-            <li>
-              <b>Start the dev server:</b>
-              <pre>php sprout grow</pre>
-            </li>
-            <li>
-              <b>Open:</b>
-              <pre>http://localhost:9090</pre>
-            </li>
-            <li>
-              Edit <code>routes/web.php</code>, <code>app/Controllers</code>,
-              and <code>app/Views</code> to build your app.
-            </li>
-          </ol>
-          <p>Use the CLI to scaffold files:</p>
-          <pre><code>php sprout make:controller HomeController
-php sprout make:model Post
-php sprout make:view home
-php sprout make:route posts
-# ...and more (run `php sprout` for all commands)</code></pre>
         </section>
         <section id="project-structure">
           <h2>Project Structure</h2>
@@ -257,6 +228,84 @@ php sprout make:route posts
             <li><b>storage/</b> — File uploads, cache, logs, etc.</li>
             <li><b>vendor/</b> — Composer dependencies</li>
           </ul>
+        </section>
+        <!-- Example Server Configuration (Apache & Nginx) -->
+        <section id="server-config-examples">
+          <h2>Server Configuration (Apache &amp; Nginx)</h2>
+          <h3>Apache (.htaccess)</h3>
+          <pre><code class="language-apache"># Place this in your project root (not public/)
+# Redirect all requests to public/
+RewriteEngine On
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteRule ^(.*)$ /public/$1 [L]
+
+# Deny access to sensitive files everywhere
+&lt;FilesMatch "^(\.env|\.git|composer\.(json|lock)|config\.php)$"&gt;
+  Order allow,deny
+  Deny from all
+&lt;/FilesMatch&gt;
+</code></pre>
+          <h3>Nginx</h3>
+          <pre><code class="language-nginx">server {
+    listen 80;
+    server_name yourdomain.com;
+
+    # Set the root to the public directory
+    root /path/to/your/project/public;
+
+    index index.php index.html;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    # Deny access to sensitive files
+    location ~ /\.(env|git|htaccess) {
+        deny all;
+    }
+    location ~* /(composer\.json|composer\.lock|config\.php) {
+        deny all;
+    }
+
+    location ~ \.php$ {
+        fastcgi_pass unix:/var/run/php/php8.2-fpm.sock;
+        fastcgi_index index.php;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    }
+}
+</code></pre>
+        </section>
+        <section id="getting-started">
+          <h2>Getting Started</h2>
+          <ol>
+            <li>
+              <b>Clone the repository:</b>
+              <pre>git clone https://github.com/SproutPHP/framework.git</pre>
+            </li>
+            <li>
+              <b>Install dependencies:</b>
+              <pre>composer install</pre>
+            </li>
+            <li>
+              <b>Start the dev server:</b>
+              <pre>php sprout grow</pre>
+            </li>
+            <li>
+              <b>Open:</b>
+              <pre>http://localhost:9090</pre>
+            </li>
+            <li>
+              Edit <code>routes/web.php</code>, <code>app/Controllers</code>,
+              and <code>app/Views</code> to build your app.
+            </li>
+          </ol>
+          <p>Use the CLI to scaffold files:</p>
+          <pre><code>php sprout make:controller HomeController
+php sprout make:model Post
+php sprout make:view home
+php sprout make:route posts
+# ...and more (run `php sprout` for all commands)</code></pre>
         </section>
         <section id="routing">
           <h2>Routing</h2>
