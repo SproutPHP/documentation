@@ -124,6 +124,9 @@ function addCopyButtons() {
 }
 addCopyButtons();
 
+document.getElementById("copyright-year").textContent =
+  new Date().getFullYear();
+
 // Dark mode toggle logic
 const darkToggles = document.querySelectorAll("#darkmode-toggle");
 const html = document.documentElement;

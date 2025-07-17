@@ -231,7 +231,14 @@ html[data-theme="dark"] .about-branding {
 html[data-theme="dark"] .about-branding-quote {
   color: #4caf50;
 }
-
+.footer-follow a,
+.footer-follow span {
+  text-decoration: none !important;
+  border: none !important;
+  margin-top: 0.5em;
+  font-size: 0.98em;
+  color: var(--muted);
+}
 @media (max-width: 900px) {
   .mobile-header {
     display: flex !important;
