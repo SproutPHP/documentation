@@ -130,6 +130,7 @@
               >
             </li>
             <li><a href="#debugbar" class="nav-link">Debugbar</a></li>
+            <li><a href="#testing" class="nav-link">Testing</a></li>
             <li><a href="#changelog" class="nav-link">Changelog</a></li>
             <li><a href="#release-notes" class="nav-link">Release Notes</a></li>
           </ul>
@@ -571,6 +572,34 @@ $privatePath = Storage::path($filename, 'private');
               <code>core/Support/Debugbar.php</code>
             </li>
           </ul>
+        </section>
+        <section id="testing">
+          <h2>Testing Your SproutPHP App</h2>
+          <p>SproutPHP is compatible with <a href="https://phpunit.de/" target="_blank">PHPUnit</a> and other popular PHP testing tools.</p>
+          <ol>
+            <li><b>Install PHPUnit (dev only):</b><br>
+              <code>composer require --dev phpunit/phpunit</code>
+            </li>
+            <li><b>Create a <code>tests/</code> directory</b> in your project root.</li>
+            <li><b>Add a sample test:</b>
+              <pre><code>// tests/ExampleTest.php
+use PHPUnit\Framework\TestCase;
+
+class ExampleTest extends TestCase
+{
+    public function testBasicAssertion()
+    {
+        $this->assertTrue(true);
+    }
+}
+</code></pre>
+            </li>
+            <li><b>Run your tests:</b><br>
+              <code>./vendor/bin/phpunit</code>
+            </li>
+          </ol>
+          <p>You can test any part of your app: helpers, models, controllers, middleware, etc. Use mocks and stubs as needed.</p>
+          <p><b>Note:</b> SproutPHP does not include test files by default. You are free to organize and write tests as you see fit for your project.</p>
         </section>
         <section id="changelog">
           <h2>Changelog</h2>
