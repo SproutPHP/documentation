@@ -309,6 +309,25 @@ php sprout make:route posts
         </section>
         <section id="routing">
           <h2>Routing</h2>
+          <p>SproutPHP supports flexible route parameters (like most modern frameworks):</p>
+          <ul>
+            <li><code>{param}</code> — required parameter (matches anything except <code>/</code>)</li>
+            <li><code>{param?}</code> — optional parameter (trailing slash and parameter are optional)</li>
+            <li><code>{param:regex}</code> — required with custom regex</li>
+            <li><code>{param?:regex}</code> — optional with custom regex</li>
+          </ul>
+          <table>
+            <thead><tr><th>Pattern</th><th>Matches</th><th>Example URI</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td><code>/user/{id}</code></td><td>Yes</td><td>/user/123</td><td><code>{id}</code> = 123</td></tr>
+              <tr><td><code>/user/{id?}</code></td><td>Yes</td><td>/user/123, /user</td><td><code>{id}</code> = 123 or null</td></tr>
+              <tr><td><code>/file/{path:.+}</code></td><td>Yes</td><td>/file/foo/bar</td><td><code>{path}</code> = foo/bar</td></tr>
+              <tr><td><code>/file/{path?:.+}</code></td><td>Yes</td><td>/file, /file/foo/bar</td><td><code>{path}</code> = foo/bar or null</td></tr>
+              <tr><td><code>/blog/{slug}</code></td><td>Yes</td><td>/blog/hello-world</td><td><code>{slug}</code> = hello-world</td></tr>
+              <tr><td><code>/blog/{slug}</code></td><td>No</td><td>/blog/hello/world</td><td><code>{slug}</code> does not match <code>/</code></td></tr>
+            </tbody>
+          </table>
+          <p>Optional parameters are passed as <code>null</code> if missing. For catch-all (wildcard) parameters, use a custom regex like <code>{path:.+}</code>.</p>
           <p>
             Define routes in <code>routes/web.php</code> using a simple,
             expressive API. SproutPHP supports dynamic parameters for flexible
