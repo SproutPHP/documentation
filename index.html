@@ -37,7 +37,13 @@
     </style>
   </head>
   <body>
-    <a href="#" class="beta-ribbon"> Beta </a>
+    <!-- Remove beta ribbon if present -->
+    <!-- Add Edit on GitHub ribbon -->
+    <div style="position: fixed; top: 0; right: 0; z-index: 10000;">
+      <a href="https://github.com/SproutPHP/documentation/tree/main" target="_blank" style="display: block; background: #23272f; color: #fff; padding: 0.6em 1.2em; border-bottom-left-radius: 8px; font-weight: bold; text-decoration: none; box-shadow: 0 2px 8px #0002; font-size: 1.1em; border: 2px solid #4ade80; border-top: none; border-right: none;">
+        ✏️ Edit on GitHub
+      </a>
+    </div>
     <div class="mobile-header">
       <button
         id="sidebar-toggle"
